@@ -24,7 +24,6 @@ function startGame() {
     cells[i].addEventListener('click', turnClick, false)
   }
   console.log(origBoard);
-  // console.log("Hello");
 }
 
 function turnClick(square) {
@@ -42,16 +41,16 @@ function turn(squareId, player) {
 }
 
 function checkWin(board, player) {
-  let plays = board.reduce((a,e,i) =>
-  (e === player) ? a.concat(i) : a, []);
-  let gameWon = null;
-  for (let [index, win] of winCombos.entries()) {
-    if (win.every(elem => plays.indexOf(elem) > -1)) {
-      gameWon = {index: index, player: player};
-      break;
-    }
-  }
-  return gameWon;
+	let plays = board.reduce((a, e, i) =>
+		(e === player) ? a.concat(i) : a, []);
+	let gameWon = null;
+	for (let [index, win] of winCombos.entries()) {
+		if (win.every(elem => plays.indexOf(elem) > -1)) {
+			gameWon = {index: index, player: player};
+			break;
+		}
+	}
+	return gameWon;
 }
 
 function gameOver(gameWon) {
@@ -60,13 +59,13 @@ function gameOver(gameWon) {
     gameWon.player == humanPlayer ? "blue" : "red";
   }
   for (var i = 0; i < cells.length; i++) {
-    cells[i].removeEventListener('click', turnClick, false)
+    cells[i].removeEventListener('click', turnClick, false);
   }
-  declareWinner(gameWon.player == humanPlayer ? "You win!" : "You lose!")
+  declareWinner(gameWon.player == humanPlayer ? "You win!" : "You lose.");
 }
 function declareWinner(who) {
   document.querySelector(".endgame").style.display = "block";
-  document.querySelector(".endgame.text").innerText = "who";
+  document.querySelector(".endgame .text").innerText = who;
 }
 
 function emptySquares() {
